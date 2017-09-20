@@ -32,32 +32,30 @@ function createNote(req,res) {
   }
 }
 
-
-
 function getList(req,res) {
   var user = req.user;
+  console.log(user);
 
-  Notes.find(
-    {
-      create:user.email
-    }
-  ), (err, doc) => {
-    console.log('HOLA');
+  Notes.find({create: user.email}, (err,obj) => {
     if (err) {
       res.status(500).send({message: 'Error en la petición -> ' + err})
     } else {
-      if (!doc) {
+      if (!obj) {
         res.status(404).send({message: 'La nota no existe '})
       } else {
-        console.log(doc);
-        res.status(200).send({message: doc})
+        res.status(200).send({obj: obj})
       }
     }
-  }
+  });
+};
+
+function updateNote(req,res) {
+  
 }
 
 
 module.exports = {
   createNote,
-  getList
+  getList,
+  updateNote
 };

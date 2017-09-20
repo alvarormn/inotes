@@ -11,6 +11,7 @@ var multipart = require('connect-multiparty');
 
 api.post('/createNote', md_auth.ensureAuth, noteController.createNote);
 api.get('/getList', md_auth.ensureAuth, noteController.getList);
+api.post('/updateNote', md_auth.ensureAuth, noteController.updateNote);
 
 
 module.exports = api;

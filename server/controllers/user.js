@@ -85,7 +85,7 @@ function loginUser(req, res){
 function editUser(req, res) {
   var params = req.user;
   var updatedUser = req.body;
-  
+
   User.updateOne({email: params.email}, updatedUser, (err, user)  => {
     if (err) {
       res.status(500).send({message: 'Error en la petición -> ' + err})
@@ -101,87 +101,8 @@ function editUser(req, res) {
   //console.log(decode);
 }
 
-
-
-function authentication(req, res) {
-  res.status(200).send({message: 'Prueba autentificacion con jwt de una funcion'})
-}
-
-function updateUser(req, res) {
-  var userId = req.params.id;
-  var update = req.body;
-
-  User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
-    if (err){
-      res.status(500).send({message: 'ERROR al actualizar el usuario' + err});
-    }else {
-      if (!userUpdate) {
-        res.status(404).send({message: 'No se ha actualizar el usuario'});
-      }else {
-        res.status(200).send({user: userUpdate});
-      }
-    }
-  })
-}
-
-
-
-function uploadImage(req, res) {
-  var userId = req.params.id;
-
-  if (req.files) {
-
-
-    var file_path = req.files.image.path;
-    var file_ext = path.extname(file_path)
-    var file_name  = path.basename(file_path);
-
-    if (file_ext === '.png' || file_ext === '.jpg' || file_ext === '.gif') {
-      User.findByIdAndUpdate(userId, {image: file_name}, (err, userUpdate) => {
-        if (!userUpdate) {
-          res.status(404).send({message: 'No se ha actualizar el usuario'});
-        }else {
-          res.status(200).send({user: 'Imagen subida correctamente'});
-        }
-      });
-    }else {
-      res.status(200).send({user: 'Extensión del archivo no valido'});
-    }
-
-
-    //console.log(file_ext);
-    //res.status(200).send({user: 'Imagen subida correctamente'});
-  } else {
-    res.status(200).send({user: 'No ha subido ninguna imagen'});
-  };
-};
-
-function getImageFile(req, res) {
-
-  console.log(path_file);
-
-  var imageFile = req.params.imageFile;
-  var path_file = './uploads/users/' + imageFile;
-
-  fs.exists(path_file, function(exists) {
-
-    if (exists) {
-      res.sendFile(path.resolve(path_file));
-    }else {
-      res.status(200).send({user: 'no existe la imagen'});
-    }
-  });
-
-}
-
-
-
 module.exports = {
   saveUser,
   loginUser,
-  editUser,
-  authentication,
-  updateUser,
-  uploadImage,
-  getImageFile
+  editUser
 };
