@@ -1,23 +1,49 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div class="row">
+  <div class="col-md-6">
+    <h1>Registrar</h1>
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" id="name" ng-model="nameReg">
+        <p class="help-block">Introduzca el nombre.</p>
+      </div>
+      <div class="form-group">
+        <label for="surname">Apellido</label>
+        <input type="text" class="form-control" id="surname" ng-model="surameReg">
+        <p class="help-block">Introduzca el apellido.</p>
+      </div>
+      <div class="form-group">
+        <label for="mail">email</label>
+        <input type="email" class="form-control" id="email" ng-model="mailReg">
+        <p class="help-block">Introduzca el mail.</p>
+      </div>
+      <div class="form-group">
+        <label for="pass">Contraseña</label>
+        <input type="password" class="form-control" id="pass" ng-model="passReg">
+        <p class="help-block">Introduzca la contraseña.</p>
+      </div>
+      <!--button type="button"class="btn btn-default" ng-click="cleanForm">Limpiar</button-->
+      <button type="button" class="btn btn-primary" ng-click="register()">Registrar</button>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+      <div ng-class="class" ng-model="class" role="alert" style="margin-top:1em;">
+        {{data.menssage}}
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h1>login</h1>
+    <form>
+      <div class="form-group">
+        <label for="mail">email</label>
+        <input type="email" class="form-control" id="mail" ng-model="mailLogin">
+        <p class="help-block">Introduzca el email.</p>
+      </div>
+      <div class="form-group">
+        <label for="pass">Contraseña</label>
+        <input type="password" class="form-control" id="pass" ng-model="passLogin">
+        <p class="help-block">Introduzca la contraseña.</p>
+      </div>
+      <button type="button" class="btn btn-primary" ng-click="login()">Entrar</button>
+    </form>
+  </div>
 </div>
